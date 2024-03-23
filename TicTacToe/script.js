@@ -59,20 +59,7 @@ const winPatterns = [
      msgContainer.classList.remove("hide");
      disableBtn();
   }
-  //checks for draw
-  let count = 0;
-  const checkDraw = () =>{
-    for(let box of boxes){
-      box.addEventListener("click",()=>{
-         count++;
-         if(count===9){
-            showDraw();
-          }
-      });
-    }
-  }
-  //checks for winner
-  checkDraw();
+  
   const checkWinner = () =>{
     for(let pattern of winPatterns){
       let pos1val = boxes[pattern[0]].innerText;
@@ -83,9 +70,24 @@ const winPatterns = [
         if(pos1val === pos2val && pos2val === pos3val){
           showWinner(pos1val);
         }
+        else{
+           //checks for draw
+          let count = 0;
+          const checkDraw = () =>{
+              for(let box of boxes){
+                  box.addEventListener("click",()=>{
+                  count++;
+                  if(count===9){
+                  showDraw();
+          }
+      });
+    }
+  }
+        }
       }
     }
   };
+  checkDraw();
   newBtn.addEventListener("click", resetButn);
   resetBtn.addEventListener("click", resetButn);
   
